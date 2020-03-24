@@ -26,8 +26,12 @@ export const declareChecklist = 'Declaro que li e não estou apresentando nenhum
 export const LegendChecklist = '*O vírus também é transmitido por pessoas assintomáticas.'
 export const linkChecklist = 'Estou com sintomas, o que fazer?'
 
-// Donation screen
+// donation list
+export const donationListVoidText = 'Você está sem pedidos \nde doações no momento'
+export const donationTitlePage = 'Lista de doações'
+export const exitText = 'Sair'
 
+// Donation screen
 export const titleDonation = 'Doação'
 export const statusDonationWait = 'Esperando recebimento'
 export const legendDonationWaitDate = 'Dia de recebimento'

@@ -1,0 +1,16 @@
+.containerIsEmpty {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  box-sizing: border-box;
+
+  span {
+    font-family: Rubik-Regular;
+    color: #202228;
+    justify-self: center;
+    align-self: center;
+    padding: 1rem 7rem;
+    text-align: center;
+  }
+}

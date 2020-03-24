@@ -1,0 +1,28 @@
+.fixedHeader {
+  position: relative;
+  top: 0;
+}
+.containerHeader {
+  font-family: Rubik-Regular;
+  padding: 1.8rem 1rem 0 1rem;
+  display: flex;
+  flex-direction: column;
+
+  span {
+    height: 0;
+  }
+
+  a {
+    position: relative;
+    float: right;
+    top: -3rem;
+    text-decoration: underline;
+    cursor: pointer;
+
+    img {
+      position: relative;
+      top: 0.4rem;
+      margin: 0 0.3rem 0 0;
+    }
+  }
+}

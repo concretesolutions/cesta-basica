@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { useHistory } from 'react-router-dom'
 
 import './Login.scss'
 
-import { connect, types } from '../../store'
-
-import { Auth } from '../../services/API/Login'
-import * as Storage from '../../services/storage'
+import { connect } from '../../store'
+import { Auth } from '../../services/login'
 
 import {
   titleLoginScreen,
@@ -16,32 +15,30 @@ import {
   errorMessageInvalidPassword,
 } from '../../utils/strings'
 
+import { Loader } from '../../components/Loader'
 import { LogoHorizontal } from '../../components/Logo'
 import { Input, inputTypes } from '../../components/Input'
 import { Button, ButtonTypes } from '../../components/Button'
 
-function Login({ store, dispatch }) {
+function Login({ dispatch }) {
+  const history = useHistory()
+  const [loading, setLoading] = useState(false)
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(false)
   async function handleSubmit(e) {
     e.preventDefault()
-    const auth = await Auth({ login, password })
-    if (auth) {
-      const { user, token } = auth
-      dispatch({ type: types.SET_USER, payload: user })
-      dispatch({ type: types.SET_TOKEN, payload: token })
-      Storage.user(user)
-      Storage.token(token)
-    } else {
-      setError(true)
-    }
+    setLoading(true)
+    await Auth({ login, password }, dispatch, history)
+    setLoading(false)
+    setError(true)
   }
   useEffect(() => {
     error && setError(false)
   }, [login, password])
   return (
     <>
+      {loading && <Loader />}
       <div className="containerLogo">
         <LogoHorizontal />
       </div>

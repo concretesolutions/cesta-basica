@@ -1,0 +1,35 @@
+.floatRigth {
+  font-size: 12px;
+  position: relative;
+  float: right;
+  color: #c7c7c7;
+}
+.donationItem {
+  padding: 0.56rem;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  height: 4rem;
+  font-family: Rubik-Regular;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    &__title {
+      color: #202228;
+      font-size: 16px;
+      margin: 0 0 0.56rem 0;
+    }
+
+    &__quantity {
+      color: #909090;
+      font-size: 14px;
+    }
+
+    &__state {
+      &--complete {
+        color: #328b21;
+      }
+    }
+  }
+}

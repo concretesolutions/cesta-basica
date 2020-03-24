@@ -5,13 +5,15 @@ import { connect } from '../store'
 
 function RouteWrapper({ component: Component, isPrivate, store, ...rest }) {
   const { auth } = store
+  const { path } = rest
 
   if (!auth.token && isPrivate) {
-    return <Redirect to="/" />
+    return <Redirect to="/login" />
   }
 
-  if (auth.token && !isPrivate) {
-    return <Redirect to="/logged" />
+  // verificar role do usuario para saber qual rota direcionar no futuro
+  if (auth.token && (path === '/login' || path === '/')) {
+    return <Redirect to="/donation-list" />
   }
 
   return <Route {...rest} component={Component} />

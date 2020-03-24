@@ -1,9 +1,11 @@
 import React, { useContext } from 'react'
 import { types } from './types'
 
-export { types }
+import { set, get, clear } from '../services/storage'
 
-export const initialState = {
+export { types }
+const dataStorage = get()
+const cleanState = {
   user: {},
   auth: {
     token: null,
@@ -16,30 +18,29 @@ export const initialState = {
   },
   declaration: false,
   health: false,
+  donation: {},
 }
+
+function saveState(newState) {
+  set(newState)
+  return newState
+}
+
+function logout() {
+  clear()
+  return cleanState
+}
+
+export const initialState = dataStorage || cleanState
 
 export const Context = React.createContext()
 
 const actionMap = {
-  [types.SET_USER]: (state, payload) => ({
-    ...state,
-    user: payload,
-  }),
-  [types.SET_TOKEN]: (state, { token }) => ({
-    ...state,
-    auth: {
-      ...state.auth,
-      token,
-    },
-  }),
-  [types.SET_DECLARATION]: (state, payload) => ({
-    ...state,
-    declaration: payload,
-  }),
-  [types.SET_HEALTHCHECK]: (state, payload) => ({
-    ...state,
-    health: payload,
-  }),
+  [types.SET_USER]: (state, payload) => saveState({ ...state, user: payload }),
+  [types.SET_TOKEN]: (state, { token }) => saveState({ ...state, auth: { ...state.auth, token } }),
+  [types.SET_DECLARATION]: (state, payload) => saveState({ ...state, declaration: payload }),
+  [types.SET_HEALTHCHECK]: (state, payload) => saveState({ ...state, health: payload }),
+  [types.SET_LOGOUT]: () => logout(),
   [types.SET_DONATION]: (state, payload) => ({
     ...state,
     donation: payload,
