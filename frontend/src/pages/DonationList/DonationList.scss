@@ -1,0 +1,11 @@
+.containerDonation {
+  overflow: hidden;
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem 1rem 1.2rem 1rem;
+    height: calc(100vh - 12.8rem);
+    overflow-y: scroll;
+  }
+}

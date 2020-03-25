@@ -1,10 +1,9 @@
 import { Events } from '../repositories/events'
 
-export async function commitment ({ login, role, timestamp, type }) {
+export async function commitment ({ login, role }) {
   return Events.create({
     login,
     role,
-    timestamp,
-    type
+    type: 'commitment'
   })
 }

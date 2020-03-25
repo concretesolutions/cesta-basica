@@ -1,0 +1,40 @@
+.headerHome {
+  display: flex;
+  justify-content: space-around;
+  padding: 1.5rem 0;
+
+  &__button {
+    position: relative;
+    top: 0.5rem;
+  }
+}
+
+.contentHome {
+  background-color: #328b21;
+  font-family: Rubik-Regular;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0.2px;
+  padding: 1.7rem;
+  color: #ffffff;
+  box-sizing: border-box;
+
+  &__button {
+    display: flex;
+    justify-content: right;
+  }
+}
+
+.footerHome {
+  font-family: Rubik-Light;
+  padding: 1.5rem 1.5rem;
+
+  &--subtitle {
+    color: #328b21;
+    font-size: 22px;
+    letter-spacing: 0.2px;
+    font-weight: bold;
+  }
+}

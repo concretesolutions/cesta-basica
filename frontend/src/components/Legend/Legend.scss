@@ -1,0 +1,43 @@
+.legend {
+  font-style: normal;
+  letter-spacing: 0.2px;
+  line-height: 18px;
+
+  &.strong {
+    margin: 10px 0px;
+    font-weight: 500;
+    font-size: 14px;
+
+
+    color: #202228;
+  }
+
+  &.normal {
+
+    font-weight: normal;
+    font-size: 12px;
+}
+  &.light {
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+
+    color: #909090;
+  }
+  &.large {
+    width: 100%;
+    font-size: 16px;
+    margin: 0px;
+  }
+
+}
+.center {
+  text-align: center;
+}
+.start {
+  text-align: start;
+}
+.end {
+  text-align: end;
+}

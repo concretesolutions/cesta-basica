@@ -18,9 +18,9 @@ const donationSchema = new Schema({
     unique: true,
     required: [true, 'DonationId is required']
   },
-  leaderId: {
+  leaderLogin: {
     type: String,
-    required: [true, 'LeaderId is required']
+    required: [true, 'leaderLogin is required']
   },
   quantity: {
     type: Number,
@@ -51,9 +51,9 @@ const eventSchema = new Schema({
     type: Number,
     required: [true, 'Quantity is required']
   },
-  leaderId: {
+  leaderLogin: {
     type: String,
-    required: [true, 'LeaderId is required']
+    required: [true, 'leaderLogin is required']
   },
   donor: {
     type: String,
@@ -66,7 +66,7 @@ const eventSchema = new Schema({
     default: 'Esperando recebimento'
   },
   timeStamp: {
-    type: String,
+    type: Date,
     required: [true, 'Timestamp is required']
   },
   receivedCpf: {

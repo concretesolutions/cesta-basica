@@ -1,0 +1,42 @@
+.subtitle {
+  font-style: normal;
+  line-height: 22px;
+  margin: 11px 0px;
+  letter-spacing: 0.2px;
+
+  color: #202228;
+
+
+  &.medium {
+    font-size: 16px;
+  }
+  &.small {
+    font-size: 14px;
+  }
+  &.large {
+    font-size: 20px;
+  }
+
+  &.normal {
+    font-weight: normal;
+  }
+  &.strong {
+    font-weight: 500;
+  }
+  &.light {
+    font-weight: 400;
+  }
+  &.size-small {
+    width: 100px;
+    margin: 10px 0px 10px;
+  }
+
+  &.size-medium {
+    font-weight: 400;
+  }
+  &.size-large {
+    font-weight: 400;
+  }
+
+
+}

@@ -1,0 +1,42 @@
+.customInput {
+  border-radius: 4px;
+  padding: 1rem 1.2rem;
+  background-color: rgb(239, 239, 239);
+  border: 0.7px solid transparent;
+  font-family: Rubik-Regular;
+
+  &--success {
+    border-color: #328B21;
+  }
+
+  &--error {
+    border-color: #c5061d;
+  }
+
+  &:focus {
+    outline: 1px dashed #000;
+    border-color: black;
+  }
+
+  &::placeholder {
+    color: #a5a5a5;
+  }
+
+  &__icon {
+    position: relative;
+    float: right;
+    top: -2.1rem;
+    right: 1rem;
+  }
+
+  &__messageError {
+    position: relative;
+    top: 0.2rem;
+    font-size: 12px;
+    color: #c5061d;
+  }
+
+  &.large {
+    width: -webkit-fill-available;
+  }
+}

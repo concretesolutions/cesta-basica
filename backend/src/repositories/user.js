@@ -7,18 +7,44 @@ const schema = new Schema({
     unique: true,
     required: [true, 'login is required']
   },
+  name: {
+    type: String
+  },
   password: {
     type: String,
     required: [true, 'password is required']
+  },
+  role: {
+    type: String,
+    enum: ['leader', 'admin', 'user'],
+    required: [true, 'role is required']
   },
   email: {
     type: String,
     lowercase: true
   },
-  role: {
+  cpf: {
     type: String,
-    enum: ['leader', 'admin'],
-    required: [true, 'role is required']
+    minLength: 11,
+    maxLength: 11
+  },
+  rg: {
+    type: String
+  },
+  phone: {
+    type: String
+  },
+  birthdate: {
+    type: Date
+  },
+  site: {
+    type: String
+  },
+  city: {
+    type: String
+  },
+  state: {
+    type: String
   }
 })
 
