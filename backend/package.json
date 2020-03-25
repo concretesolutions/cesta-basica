@@ -4,10 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node -r esm main.js",
-    "load-data": "node -r esm src/load-data/all.js",
-    "dev": "nodemon -r esm main.js",
-    "lint": "eslint ."
+    "start": "node -r esm src/main.js",
+    "dev": "nodemon -r esm src/main.js",
+    "lint": "eslint .",
+    "postinstall": "npm run build",
+    "load-data": "node -r esm src/load-data/all.js"
   },
   "dependencies": {
     "aws-sdk": "^2.643.0",
@@ -21,6 +22,7 @@
     "json2csv": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.5",
+    "serverless-http": "^2.3.2",
     "uuid": "^7.0.2"
   },
   "devDependencies": {

@@ -8,11 +8,10 @@ const status = {
 
 export const getConnectionState = () => ({ ...status })
 
-export const connect = () =>
-  mongoose.connect(process.env.DBURL, {poolSize: 10})
-
-export const disconnect = () =>
-  mongoose.disconnect()
+export const connect = () => {
+  console.log(new Date(), 'Database connected')
+  return mongoose.connect(process.env.DBURL)
+}
 
 mongoose.connection.on('connected', () => {
   status.connected = true
