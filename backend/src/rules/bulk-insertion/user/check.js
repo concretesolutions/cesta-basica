@@ -1,5 +1,5 @@
 import { User } from '../../../repositories'
-import CustomError from '../../../core/custom-error'
+import HttpException from '../../../core/http-exception'
 
 const loginMapFunc = (user) => user.login;
 
@@ -9,7 +9,7 @@ export default async (validUsers) => {
   const existingUsers = await User.find({ login: { $in: toBeAddedDocs } }, 'login');
 
   if (existingUsers.length > 0) {
-    throw new CustomError(422, `Usuário(s) já existente(s) no sistema ${existingUsers.map(loginMapFunc).join(', ')}`)
+    throw new HttpException(422, `Usuário(s) já existente(s) no sistema ${existingUsers.map(loginMapFunc).join(', ')}`)
   }
 
   return validUsers;

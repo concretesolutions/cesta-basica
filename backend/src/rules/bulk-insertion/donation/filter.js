@@ -1,4 +1,4 @@
-import CustomError from '../../../core/custom-error'
+import HttpException from '../../../core/http-exception'
 
 const forEachFunc = (
   [
@@ -28,7 +28,7 @@ export default async (data) => {
   const valid = [];
   Object.entries(data).forEach((line) => forEachFunc(line, valid, invalid));
   if (invalid.length > 0) {
-    throw new CustomError(422, `Dado(s) inconsistente(s) na(s) linha(s) ${invalid.join(', ')}`);
+    throw new HttpException(422, `Dado(s) inconsistente(s) na(s) linha(s) ${invalid.join(', ')}`);
   }
   return valid;
 };

@@ -1,4 +1,4 @@
-import CustomError from '../../core/custom-error';
+import HttpException from '../../core/http-exception';
 
 export default async (validObjects, objectIdMapFunc, schema, schemaKey, schemaIdMapFunc, schemaDescription) => {
   const toBeFoundList = validObjects.map(objectIdMapFunc);
@@ -10,15 +10,9 @@ export default async (validObjects, objectIdMapFunc, schema, schemaKey, schemaId
   if (existingObjects.length !== toBeFoundUnique.size) {
     const found = new Set(existingObjects.map(schemaIdMapFunc));
 
-    const notFound = new Set();
+    const notFound = new Set(Array.from(toBeFoundUnique).filter(element => !found.has(element)));
 
-    [...toBeFoundUnique].forEach(element => {
-      if (!found.has(element)) {
-        notFound.add(element);
-      }
-    });
-
-    throw new CustomError(422, `${schemaDescription}(s) não encontrado(s) no sistema ${[...notFound].join(', ')}`)
+    throw new HttpException(422, `${schemaDescription}(s) não encontrado(s) no sistema ${[...notFound].join(', ')}`)
   }
 
   return validObjects;

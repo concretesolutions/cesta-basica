@@ -1,7 +1,7 @@
 import { User, Donation } from '../../../repositories'
 import genericChecker from '../check-util';
 
-import CustomError from '../../../core/custom-error'
+import HttpException from '../../../core/http-exception'
 
 const loginDonationMapFunc = (donation) => donation.leaderLogin;
 const loginUserMapFunc = (user) => user.login;
@@ -13,7 +13,7 @@ const checkDonationExists = async (validDonations) => {
   const existingDonations = await Donation.find({ donationId: { $in: toBeAddedDocs } }, 'donationId');
 
   if (existingDonations.length > 0) {
-    throw new CustomError(422, `Pacotes(s) já existente(s) no sistema ${existingDonations.map(getDonationIds).join(', ')}`)
+    throw new HttpException(422, `Pacotes(s) já existente(s) no sistema ${existingDonations.map(getDonationIds).join(', ')}`)
   }
 
   return validDonations;

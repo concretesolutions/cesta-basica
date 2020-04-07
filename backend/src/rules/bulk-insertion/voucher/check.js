@@ -1,6 +1,6 @@
 import { User, Donation, Voucher } from '../../../repositories'
 import genericChecker from '../check-util';
-import CustomError from '../../../core/custom-error'
+import HttpException from '../../../core/http-exception'
 
 const getUserLoginFunc = (user) => user.login;
 
@@ -14,7 +14,7 @@ const checkVouchersExists = async (validDonations) => {
   const existingDonations = await Voucher.find({ voucherId: { $in: toBeAddedDocs } }, 'voucherId');
 
   if (existingDonations.length > 0) {
-    throw new CustomError(422, `Vouchers(s) já existente(s) no sistema ${existingDonations.map(getVoucherIdFunc).join(', ')}`)
+    throw new HttpException(422, `Vouchers(s) já existente(s) no sistema ${existingDonations.map(getVoucherIdFunc).join(', ')}`)
   }
 
   return validDonations;

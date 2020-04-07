@@ -1,16 +1,13 @@
-import processUsers from './user/process';
-import processDonation from './donation/process';
-import processVoucher from './voucher/process';
+import processUsers from './user/process'
+import processDonation from './donation/process'
+import processVoucher from './voucher/process'
 
-export async function processFile(data, type) {
-  if (type === 'user') {
-    return processUsers(data);
-  }
-  if (type === 'donation') {
-    return processDonation(data);
-  }
-  if (type === 'voucher') {
-    return processVoucher(data);
-  }
-  return '';
+const process = {
+  user: processUsers,
+  donation: processDonation,
+  voucher: processVoucher,
+}
+
+export function processFile(data, type) {
+  return process[type] ? process[type](data) : ''
 }
