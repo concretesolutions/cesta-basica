@@ -17,7 +17,11 @@ import {
   detailsDonation,
   deleteEvents,
   updateDonation,
-  listLeaders
+  listLeaders,
+  readFile,
+  filterFile,
+  processFile,
+  checkFile,
 } from '../rules'
 
 export const router = Router()
@@ -202,3 +206,17 @@ router.get('/leaders/:name', authRequired('admin'), (req, res) =>
       console.log(err)
       res.status(500).json({ message: err.message })
     }))
+
+// Inclusão de dados via arquivo;
+router.post('/load/:type', authRequired('admin'), (req, res) => {
+  const { params: { type } } = req;
+
+  readFile(req.files.file)
+    .then(parsedData => filterFile(parsedData, type))
+    .then(filteredData => checkFile(filteredData, type))
+    .then(validData => processFile(validData, type))
+    .then(processResult => res.status(200).json(processResult))
+    .catch(
+      err =>
+        res.status(err.statusCode || 500).json({ message: err.message }));
+})

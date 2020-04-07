@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 
 mongoose.set('useCreateIndex', true)
+mongoose.set('debug', process.env.MONGOOSE_DEBUG === 'true')
 
 const status = {
   connected: false
