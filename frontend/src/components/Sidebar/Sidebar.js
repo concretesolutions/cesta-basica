@@ -6,13 +6,14 @@ function Sidebar({ steps, current }) {
   const RenderLines = () => {
     const classNames = []
     for (let i = 1; i <= steps; i += 1) {
-      classNames.push(i < current ? 'actived' : i === current ? 'active' : '')
+      classNames.push(i === current ? 'active' : '')
     }
     return classNames.map((className, index) => <li key={index} className={className} />)
   }
+
   return (
     <div className="container-steps">
-      <ul className="progressbar">{RenderLines()}</ul>
+      <ul className="progress-bar">{RenderLines()}</ul>
     </div>
   )
 }
