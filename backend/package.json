@@ -7,6 +7,7 @@
     "start": "node -r esm src/main.js",
     "dev": "nodemon -r esm src/main.js",
     "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
     "postinstall": "npm run build",
     "load-data": "node -r esm src/load-data/all.js",
     "load-data-users": "node -r esm src/load-data/load-types/user.js",
@@ -21,6 +22,8 @@
     "data-sanitize-missing-leading-zeros": "node -r esm src/load-data/sanitize-missing-leading-zeros.js",
     "data-sanitize-trailling-spaces": "node -r esm src/load-data/sanitize-trailling-spaces.js",
     "transfer-donation-to-another-leader": "node -r esm src/load-data/transfer-donation-to-another-leader.js",
+    "generate-site-collection-by-donation": "node -r esm src/load-data/generate-site-collection-by-donation.js",
+    "generate-site-collection-by-user": "node -r esm src/load-data/generate-site-collection-by-user.js",
     "build": ""
   },
   "dependencies": {

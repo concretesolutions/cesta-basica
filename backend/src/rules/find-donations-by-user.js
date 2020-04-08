@@ -1,8 +1,13 @@
-import { findDonationsByAdmin } from './find-donations-by-admin'
-import { findDonationsByLeader } from './find-donations-by-leader'
+import { findDonationsByParam, findDonationsByLeader, findDonationsByAdmin } from '../rules'
 
-export async function findDonationsByUser (user) {
-  return user.role === 'admin'
-    ? findDonationsByAdmin()
-    : findDonationsByLeader(user)
+export async function findDonationsByUser (user, donationId) {
+  if (user.role === 'admin' && donationId) {
+    return findDonationsByParam(donationId)
+  } if (user.role === 'admin') {
+    return findDonationsByAdmin()
+  } else if (user.role === 'leader') {
+    return findDonationsByLeader(user)
+  } else {
+    throw new Error('Only leaders and admins is allowed on this route')
+  }
 }

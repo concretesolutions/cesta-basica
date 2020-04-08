@@ -51,8 +51,8 @@ export async function EndDonation(id, nextPage) {
 
 export async function DonationDetails(dispatch, id) {
   try {
-    const { donations } = (await Api.get(`${route}/${id}/details`, { params: { id } })).data
-    dispatch({ type: types.SET_DONATION_DETAILS, payload: donations })
+    const response = (await Api.get(`${route}/${id}/details`, { params: { id } })).data
+    dispatch({ type: types.SET_DONATION_DETAILS, payload: response })
   } catch (err) {
     return 'failed'
   }

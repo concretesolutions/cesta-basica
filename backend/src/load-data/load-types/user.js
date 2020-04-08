@@ -15,6 +15,7 @@ export async function process () {
       rg: row.rg,
       phone: row.phone,
       birthdate: row.birthdate,
+      siteId: null,
       site: row.site,
       city: row.city,
       state: row.state,

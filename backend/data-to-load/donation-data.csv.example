@@ -1,2 +1,2 @@
-"donationId","leaderLogin","name","site","city","state","quantity"
-"1","12345678909","Jose da Silva","Localidade Xyz","Sao Paulo","SP","500"
+"donationId","leaderLogin","siteId","quantity"
+"1","12345678909",1,"500"

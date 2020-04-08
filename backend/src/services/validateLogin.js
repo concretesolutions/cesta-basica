@@ -1,11 +1,20 @@
+import joiCpfCnpj from 'joi-cpf-cnpj'
+import Joi from 'joi'
 
-const Joi = require('joi').extend(require('joi-cpf-cnpj'))
+const joiCpfCnpjValidator = Joi.extend(joiCpfCnpj)
 
 export async function validateLogin (cpf) {
-  const loginSchema = Joi.document().cpf()
-  const login = Joi.validate(cpf, loginSchema)
+  const schema = Joi.object({
+    cpf: joiCpfCnpjValidator()
+  })
 
-  if (login.error) return false
+  const { error, value } = schema.validate({ cpf }, {
+    abortEarly: false
+  })
 
-  return true
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  return value
 }

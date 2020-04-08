@@ -3,7 +3,7 @@ import fileUpload from 'express-fileupload'
 import helmet from 'helmet'
 import cors from 'cors'
 import morgan from 'morgan'
-import { databaseConnector, genericErrorHanlder } from '../middlewares'
+import { genericErrorHanlder } from '../middlewares'
 import { router } from './router'
 
 export const app = express()

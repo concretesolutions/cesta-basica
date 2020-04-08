@@ -8,6 +8,7 @@ export async function process () {
     return {
       donationId: row.donationId,
       leaderLogin: row.leaderLogin,
+      siteId: null,
       site: row.site,
       city: row.city,
       state: row.state,
@@ -18,6 +19,7 @@ export async function process () {
       receivedCardsS3Key: null,
       created: null,
       scheduled: row.scheduled,
+      sentDate: null,
       received: null,
       lastDelivery: null,
       completed: null,

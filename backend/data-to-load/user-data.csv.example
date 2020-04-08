@@ -1,2 +1,2 @@
-"password","site","city","state","name","cpf","rg","phone","email","birthdate","deliveryLocation","deliveryCep","slums"
-"12345678","Local","Sao Paulo","SP","Jose da Silva","12345678909","11477458","11 1234-5678","fulano@gmail.com","1980-1-1","Rua Ruopolis, 120","547841024","Comunidade Xyz"
+password,siteId,name,cpf,rg,phone,email,birthdate,deliveryLocation,deliveryCep,slums
+12345678,1,Jose da Silva,12345678909,11477458,11 1234-5678,fulano@gmail.com,1980-1-1,"Rua Ruopolis, 120",547841024,Comunidade Xyz

@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 
 mongoose.set('useCreateIndex', true)
+mongoose.set('debug', process.env.MONGOOSE_DEBUG === 'true')
 
 const connectionStates = {
   0: 'disconnected',
@@ -10,7 +11,7 @@ const connectionStates = {
 }
 
 export const getConnectionState = () =>
-  connectionStates[mongoose.connection.readyState]||connectionStates[0]
+  connectionStates[mongoose.connection.readyState] || connectionStates[0]
 
 export const isConnected = () =>
   mongoose.connection.readyState === 1

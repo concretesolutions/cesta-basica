@@ -10,6 +10,7 @@ const schema = new Schema({
   name: {
     type: String,
     unique: true,
+    trim: true,
     required: [true, 'name is required']
   },
   city: {

@@ -17,18 +17,6 @@ export const donationSchema = new Schema({
     type: Number,
     trim: true
   },
-  site: {
-    type: String,
-    trim: true
-  },
-  city: {
-    type: String,
-    trim: true
-  },
-  state: {
-    type: String,
-    trim: true
-  },
   quantity: {
     type: Number,
     required: [true, 'Quantity is required']

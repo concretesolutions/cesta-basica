@@ -10,6 +10,7 @@ export async function donate ({
   delivered,
   receivedCpf,
   receivedName,
+  receivedContactNumber,
   leaderComment,
   donateDonationFile
 }) {
@@ -88,6 +89,10 @@ export async function donate ({
     throw new Error('receivedName is required when delivered = true')
   }
 
+  if (!receivedContactNumber) {
+    throw new Error('receivedContactNumber is required when delivered = true')
+  }
+
   if (!donateDonationFile) {
     throw new Error('donateDonationFile is required when delivered = true')
   }
@@ -122,6 +127,7 @@ export async function donate ({
   voucher.receivedCpf = receivedCpf
   voucher.status = 2
   voucher.receivedName = receivedName
+  voucher.receivedContactNumber = receivedContactNumber
   voucher.delivered = timestamp
   voucher.cardDonatedS3Key = key
   voucher.point = {

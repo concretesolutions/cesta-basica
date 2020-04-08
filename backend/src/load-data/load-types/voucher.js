@@ -11,11 +11,13 @@ export async function process () {
       voucherId: row.voucherId,
       donationId: row.donationId,
       leaderLogin: row.leaderLogin,
+      leaderComment: null,
       status: 1,
       created: timestamp,
       delivered: null,
       receivedCpf: null,
       receivedName: null,
+      receivedContactNumber: null,
       cardDonatedS3Key: null,
       point: null
     }

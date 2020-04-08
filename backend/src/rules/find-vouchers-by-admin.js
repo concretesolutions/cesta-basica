@@ -18,6 +18,7 @@ export async function findVouchersByAdmin (donationId) {
     delivered,
     receivedCpf,
     receivedName,
+    receivedContactNumber,
     point,
     status
   }) => ({
@@ -30,6 +31,7 @@ export async function findVouchersByAdmin (donationId) {
     delivered,
     receivedCpf,
     receivedName,
+    receivedContactNumber,
     point,
     status,
     statusText: statusesVoucher[status]
