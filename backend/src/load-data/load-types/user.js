@@ -2,12 +2,13 @@ import { connect, disconnect } from '../../core/database'
 import { User } from '../../repositories'
 import { config } from 'dotenv'
 import { genericProcess } from '../genericProcess'
+import { encrypt } from '../../services'
 
 export async function process () {
   return genericProcess(User, 'user-data.csv', 'login', row => {
     return {
       login: row.cpf,
-      password: row.password,
+      password: encrypt(row.password),
       name: row.name,
       role: 'leader',
       email: row.email,
@@ -15,10 +16,7 @@ export async function process () {
       rg: row.rg,
       phone: row.phone,
       birthdate: row.birthdate,
-      siteId: null,
-      site: row.site,
-      city: row.city,
-      state: row.state,
+      siteId: row.siteId,
       deliveryLocation: row.deliveryLocation,
       deliveryCep: row.deliveryCep,
       slums: row.slums,

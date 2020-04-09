@@ -14,7 +14,7 @@ import {
   endDonation,
   detailsDonation,
   deleteEvents,
-  updateDonation,
+  createDonation,
   listLeaders,
   listSites,
   insertDataFromFile
@@ -137,9 +137,9 @@ router.post('/checklist', authRequired('leader'), (req, res, next) =>
     .then(() => res.status(201).end())
     .catch(next))
 
-// dar update na donation através do admin
-router.put('/donations', authRequired('admin'), (req, res, next) =>
-  updateDonation({ ...req.body, updatedBy: req.auth.login })
+// create donation através do admin
+router.post('/donations', authRequired('admin'), (req, res, next) =>
+  createDonation({ ...req.body, createdBy: req.auth.login })
     .then(() => res.status(204).end())
     .catch(next))
 

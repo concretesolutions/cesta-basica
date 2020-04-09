@@ -8,10 +8,7 @@ export async function process () {
     return {
       donationId: row.donationId,
       leaderLogin: row.leaderLogin,
-      siteId: null,
-      site: row.site,
-      city: row.city,
-      state: row.state,
+      siteId: row.siteId,
       quantity: row.quantity,
       receivedQuantity: null,
       donor: null,

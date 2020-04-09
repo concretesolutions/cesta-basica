@@ -4,7 +4,7 @@ import './File.scss'
 
 import { icSuccess } from '../../assets/icons'
 
-function File({ placeholder, handleImage, file }) {
+function File({ placeholder, handleImage, file, type }) {
   return (
     <>
       <form className="hidden">
@@ -13,7 +13,10 @@ function File({ placeholder, handleImage, file }) {
           onChange={handleImage}
           id="input-new-image"
           type="file"
-          accept="image/png, image/jpeg"
+          accept={type}
+          onClick={(event) => {
+            event.target.value = null
+          }}
         />
       </form>
 
@@ -34,12 +37,14 @@ File.propTypes = {
   placeholder: PropTypes.string,
   handleImage: PropTypes.func,
   file: PropTypes.string,
+  type: PropTypes.string,
 }
 
 File.defaultProps = {
   placeholder: '',
   handleImage: () => {},
   file: '',
+  type: 'image/png, image/jpeg',
 }
 
 export default File

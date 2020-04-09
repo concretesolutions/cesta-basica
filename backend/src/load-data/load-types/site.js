@@ -6,6 +6,7 @@ import { genericProcess } from '../genericProcess'
 export async function process () {
   return genericProcess(Site, 'site-data.csv', 'name', row => {
     return {
+      siteId: row.siteId,
       name: row.name,
       city: row.city,
       state: row.state

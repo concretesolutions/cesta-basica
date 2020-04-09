@@ -131,6 +131,15 @@ export const completeDeliveryInformationContate = 'Caso tenha ocorrido algum pro
 export const messageIfListIsVoid = 'Você ainda não <br/>cadastrou uma entrega'
 export const registerNewDonation = 'Cadastrar Entrega'
 
+// DeliveredDetail
+export const evidenceOfDelivered = 'Evidência <br /> de entrega do cartão'
+export const deliveryDate = 'Data da<br/> entrega'
+export const deliveredHour = 'Horário<br/> da entrega'
+export const statusDelivered = 'Status<br/> da entrega'
+export const completeName = 'Nome<br/> Completo'
+export const deliveredPhoto = 'Foto<br/> da entrega'
+export const commentLeader = 'Comentário do lider'
+
 // Generic
 export const WORD_NO = 'Não'
 export const WORD_YES = 'Sim'
@@ -138,3 +147,4 @@ export const leader = 'Lider'
 export const unit = 'Unidade'
 export const deliveredFirstLetterCapitalized = 'Entregue'
 export const notDeliveredFirstLetterCapitalized = 'Não entregue'
+export const CPF = 'CPF'

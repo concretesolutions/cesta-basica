@@ -14,8 +14,21 @@ export async function DonationsList(dispatch) {
   }
 }
 
+export async function DonationRegister(request) {
+  try {
+    await Api.post(route, request, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    return true
+  } catch (error) {
+    return false
+  }
+}
+
 export async function DonationVoucher(dataScreen, store) {
-  const { id, voucher, delivered, CPF, fullName, image } = dataScreen
+  const { id, voucher, delivered, CPF, fullName, image, comment, phone } = dataScreen
   const { lat, lon } = store.userLocation
 
   const compressedFile = image ? await compressImageFile(image) : image
@@ -28,6 +41,9 @@ export async function DonationVoucher(dataScreen, store) {
   formData.append('receivedCpf', CPF)
   formData.append('receivedName', fullName)
   formData.append('donateDonationFile', compressedFile)
+  formData.append('leaderComment', comment)
+  formData.append('receivedContactNumber', phone)
+
   try {
     await Api.post(`donations/${id}/donate`, formData, {
       headers: {

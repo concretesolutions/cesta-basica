@@ -57,10 +57,6 @@ export async function donate ({
     throw new Error('The owner of this donation is not the same of the token')
   }
 
-  if (voucher.leaderLogin !== login) {
-    throw new Error('The owner of this voucher is not the same of the token')
-  }
-
   /**
    * Not delivered
    */

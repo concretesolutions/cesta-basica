@@ -17,6 +17,7 @@ module.exports = {
   },
   plugins: ['react', 'prettier'],
   rules: {
+    'react/no-danger': 'off',
     'no-nested-ternary': 'off',
     'react/forbid-prop-types': 'off',
     'prettier/prettier': 'error',

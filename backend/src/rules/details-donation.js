@@ -49,6 +49,7 @@ export async function detailsDonation ({ donationId }) {
   const { name: siteName, city, state } = site
 
   const vouchers = (await Voucher.find({ donationId })).map(({
+    voucherId,
     receivedCpf,
     receivedName,
     receivedContactNumber,
@@ -56,6 +57,7 @@ export async function detailsDonation ({ donationId }) {
     cardDonatedS3Key
   }) => {
     return {
+      voucherId,
       receivedCpf,
       receivedName,
       receivedContactNumber,

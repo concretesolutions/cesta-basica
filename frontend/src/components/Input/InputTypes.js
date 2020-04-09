@@ -5,4 +5,5 @@ export const inputTypes = {
   CELPHONE: 'celphone',
   SIZE_LARGE: 'large',
   NUMBER: 'number',
+  DATE: 'date',
 }

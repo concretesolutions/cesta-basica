@@ -1,7 +1,7 @@
 import { Donation } from '../repositories'
 
-export async function updateDonation ({
-  updatedBy,
+export async function createDonation ({
+  createdBy,
   leaderLogin,
   siteId,
   donationId,
@@ -28,10 +28,16 @@ export async function updateDonation ({
     throw new Error('sentDate is required')
   }
 
-  await Donation.findOneAndUpdate({ donationId }, {
+  const donation = await Donation.findOne({ donationId })
+
+  if (donation) {
+    throw new Error(`donationId ${donationId} is already registered`)
+  }
+
+  return Donation.create({
     donationId,
     leaderLogin,
-    adminLogin: updatedBy,
+    adminLogin: createdBy,
     siteId,
     quantity,
     status: 1,

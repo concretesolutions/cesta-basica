@@ -31,6 +31,10 @@ function DonationList({ store, dispatch, history }) {
     })
   }
 
+  function handleClickNewDonation() {
+    history.push('/donation/register')
+  }
+
   async function getDonationList() {
     setLoading(true)
     await DonationsList(dispatch)
@@ -42,6 +46,8 @@ function DonationList({ store, dispatch, history }) {
     getGeoLocation()
     getDonationList()
   }, [])
+
+  const isAdmin = _ => role === 'admin'
 
   return (
     <div className="containerDonation">
@@ -67,17 +73,18 @@ function DonationList({ store, dispatch, history }) {
       ) : (
         <DonationIsEmpty whichMessage={role} />
       )}
-      {role === 'admin' && (
+
+      {isAdmin() && (
         <div className="containerDonation__button">
           <Button
             size={ButtonTypes.LARGE}
             typeButton="button"
             message={registerNewDonation}
-            handleClick={() => alert('register')}
+            handleClick={handleClickNewDonation}
           />
         </div>
       )}
-      <BottomMenu />
+      <BottomMenu isAdmin={isAdmin()} />
     </div>
   )
 }
@@ -85,5 +92,7 @@ function DonationList({ store, dispatch, history }) {
 DonationList.propTypes = {
   store: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 }
+
 export default connect(DonationList)

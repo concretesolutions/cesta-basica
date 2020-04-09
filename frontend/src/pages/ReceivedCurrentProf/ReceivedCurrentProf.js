@@ -34,6 +34,8 @@ function ReceivedCurrentProfPage({ store, dispatch }) {
   const { id, voucher } = useParams()
   const { goBack } = useHistory()
   const [fullName, setFullName] = useState('')
+  const [comment, setComment] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
   const [CPF, setCPF] = useState('')
   const [image, setImage] = useState()
   const [delivered, setDelivered] = useState(false)
@@ -41,12 +43,14 @@ function ReceivedCurrentProfPage({ store, dispatch }) {
   const donationInfo = store.cardList.find((item) => item.voucherId === voucher)
 
   function isDelivered() {
-    const { status, receivedName, receivedCpf } = donationInfo
+    const { status, receivedName, receivedCpf, receivedContactNumber, leaderComment } = donationInfo
     if (status === 2) {
       setFullName(receivedName || '')
       setCPF(receivedCpf || '')
+      setPhoneNumber(receivedContactNumber || '')
       return setDelivered('true')
     } else if (status === 3) {
+      setComment(leaderComment)
       setDelivered('false')
     } else {
       setDelivered('null')
@@ -90,7 +94,7 @@ function ReceivedCurrentProfPage({ store, dispatch }) {
     e.preventDefault()
     setLoading(true)
     const clearCpf = CPF.replace(/\./g, '').replace(/-/g, '')
-    const data = { id, voucher, delivered, CPF: clearCpf, fullName, image }
+    const data = { id, voucher, delivered, CPF: clearCpf, fullName, image, comment, phoneNumber }
 
     if (delivered === 'false') {
       const cleanDataUserDonation = { ...donationInfo }
@@ -98,7 +102,7 @@ function ReceivedCurrentProfPage({ store, dispatch }) {
       cleanDataUserDonation.delivered = ''
       cleanDataUserDonation.receivedName = ''
 
-      const cleanCard = store.cardList.filter(card => card.voucherId !== donationInfo.voucherId)
+      const cleanCard = store.cardList.filter((card) => card.voucherId !== donationInfo.voucherId)
 
       const newCardList = [...cleanCard, cleanDataUserDonation]
 
@@ -109,7 +113,7 @@ function ReceivedCurrentProfPage({ store, dispatch }) {
       goBack()
     }
 
-    const deliveryStatus = optionsList.find(option => `${option.value}` === delivered)
+    const deliveryStatus = optionsList.find((option) => `${option.value}` === delivered)
     analytics.receivedProf(deliveryStatus.string, voucher)
 
     setLoading(false)
@@ -145,7 +149,7 @@ function ReceivedCurrentProfPage({ store, dispatch }) {
               optionsList={optionsList}
             />
             <div style={{ paddingBottom: '.7rem' }} />
-            {delivered === 'true' && (
+            {delivered === 'true' ? (
               <>
                 <Input
                   placeholder={legendInputFullName}
@@ -154,6 +158,15 @@ function ReceivedCurrentProfPage({ store, dispatch }) {
                   maxLength="30"
                   value={fullName}
                   handleOnChange={setFullName}
+                />
+
+                <Input
+                  placeholder='Digite telefone'
+                  inputType={inputTypes.TEXT}
+                  minLength="2"
+                  maxLength="30"
+                  value={phoneNumber}
+                  handleOnChange={setPhoneNumber}
                 />
 
                 <Input
@@ -169,10 +182,22 @@ function ReceivedCurrentProfPage({ store, dispatch }) {
                 <Paragraph size={ParagraphTypes.SMALL} content="legendAddPicPersonReceiveCard" />
 
                 <div className="main-donation-received-current-prof">
-                  <SubTitle type={SubTitleTypes.LIGHT} width={SubTitleTypes.SIZE_SMALL} message={legendPhotoDeliveredDone} />
+                  <SubTitle
+                    type={SubTitleTypes.LIGHT}
+                    width={SubTitleTypes.SIZE_SMALL}
+                    message={legendPhotoDeliveredDone}
+                  />
                   <File file={image} handleImage={handleImageFile} placeholder={legendInputAddPic} />
                 </div>
               </>
+            ) : (
+              <Input
+                placeholder="Comentário sobre a não entrega"
+                inputType={inputTypes.TEXT}
+                value={comment}
+                isRequired={true}
+                handleOnChange={setComment}
+              />
             )}
           </div>
         </div>

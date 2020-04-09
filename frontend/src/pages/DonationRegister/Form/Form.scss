@@ -1,0 +1,19 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  height: 52vh;
+  align-content: space-between;
+}
+
+.form-content {
+  div {
+    margin-bottom: 20px;
+  }
+}
+
+.component-footer {
+  bottom: 0;
+  position: fixed;
+  margin: 0 40px 20px 0;
+  width: -webkit-fill-available;
+}

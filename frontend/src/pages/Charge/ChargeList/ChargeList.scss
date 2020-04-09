@@ -1,0 +1,13 @@
+.chargeList {
+  box-sizing: border-box;
+  height: 100vh;
+  overflow: hidden;;
+
+  &__button {
+    bottom: 5rem;
+    box-sizing: border-box;
+    padding: 0 1.4rem;
+    position: fixed;
+    width: 100%;
+  }
+}

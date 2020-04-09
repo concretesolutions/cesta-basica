@@ -13,4 +13,40 @@
   height: $bottomTabHeight;
   align-items: center;
   position: fixed;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+  }
+
+  li {
+    background: none;
+    border-radius: unset;
+    height: auto;
+    width: auto;
+
+    a {
+      opacity: 0.4;
+
+      &.donations,
+      &.charges {
+        opacity: 1;
+      }
+    }
+
+
+
+    &:after {
+      margin: 0;
+      padding: 0;
+      height: auto;
+      position: relative;
+      z-index: 1;
+      background: none;
+    }
+  }
 }

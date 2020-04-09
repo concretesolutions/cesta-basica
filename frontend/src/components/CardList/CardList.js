@@ -63,7 +63,7 @@ CardList.propTypes = {
 }
 
 CardList.defaultProps = {
-  handleClick: () => {},
+  handleClick: () => { },
 }
 
 export default connect(CardList)
