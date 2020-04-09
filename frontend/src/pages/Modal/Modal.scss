@@ -3,11 +3,11 @@
   transition: opacity 500ms ease-in-out;
 }
 
-.ReactModal__Overlay--after-open{
+.ReactModal__Overlay--after-open {
   opacity: 1;
 }
 
-.ReactModal__Overlay--before-close{
+.ReactModal__Overlay--before-close {
   opacity: 0;
 }
 
@@ -36,6 +36,7 @@
   height: 50px;
   text-align: center;
   position: relative;
+  top: 1rem;
 }
 
 // iphone 5/se
@@ -46,45 +47,45 @@
   }
 }
 
-  // galaxy s5
+// galaxy s5
 @media (min-width: 360px) and (min-height: 640px) {
   .modal-button {
     bottom: -1.5rem;
     padding-bottom: 0.8rem;
   }
-  }
+}
 
-  // iphone 6,7,8
+// iphone 6,7,8
 @media (min-width: 375px) and (min-height: 667px) {
   .modal-button {
-    bottom: -4rem;  
+    bottom: -4rem;
   }
 }
 
 // pixel 2
-@media(min-width: 411px) and (min-height: 731px) {
-  .modal-button{
+@media (min-width: 411px) and (min-height: 731px) {
+  .modal-button {
     bottom: -7rem;
   }
 }
 
 // pixel 2 XL
-@media(min-width: 411px) and (min-height: 823px) {
-  .modal-button{
+@media (min-width: 411px) and (min-height: 823px) {
+  .modal-button {
     bottom: -9.5rem;
   }
 }
 
 // iphone 6,7,8 plus
-@media(min-width: 414px) and (min-height: 736px){
-  .modal-button{
+@media (min-width: 414px) and (min-height: 736px) {
+  .modal-button {
     bottom: -7.5rem;
   }
 }
 
 // iphone X
-@media(min-width: 375px) and (min-height: 812px){
-  .modal-button{
+@media (min-width: 375px) and (min-height: 812px) {
+  .modal-button {
     bottom: -9rem;
   }
 }
