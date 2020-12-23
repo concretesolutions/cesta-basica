@@ -1,4 +1,7 @@
-# This is a basic workflow to help you get started with Actions
+uses: reggionick/s3-deploy@v3
+with:
+    folder: /
+    bucket: ${{ secrets.S3_BUCKET }}# This is a basic workflow to help you get started with Actions
 
 name: aws-deployer
 
@@ -6,7 +9,7 @@ name: aws-deployer
 on:
   # Triggers the workflow on push or pull request events but only for the develop branch
   push:
-    branches: [ develop, master]
+    branches: [ develop, master, aws-migration]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
