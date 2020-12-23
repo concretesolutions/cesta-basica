@@ -1,29 +1,31 @@
-uses: reggionick/s3-deploy@v3
-with:
-    folder: /
-    bucket: ${{ secrets.S3_BUCKET }}# This is a basic workflow to help you get started with Actions
-
 name: aws-deployer
-
-# Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the develop branch
   push:
-    branches: [ develop, master, aws-migration]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    branches: [aws-migration]
 jobs:
-  deploy:
+  run:
     runs-on: ubuntu-latest
-    env: branch="${GITHUB_REF##*/}"
-    if: github.event == 'push'
-    name: aws-deploy
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@{branch}
+        - uses: actions/checkout@v2
 
-      - name: deploy-static-S3
-        run: ./lambdas/aws_deployer/aws_deployer.py {branch}
+        - name: Install dependencies
+          run: yarn
+
+        - name: Build
+          run: yarn build
+      
+        - name: change backend enpoint
+          run: echo "testing"
+
+        - name: Deploy
+          uses: reggionick/s3-deploy@v3
+          with:
+            folder: build
+            bucket: ${{ secrets.S3_BUCKET }}
+            bucket-region: ${{ secrets.S3_BUCKET_REGION }}
+            delete-removed: true
+            no-cache: true
+            private: true
