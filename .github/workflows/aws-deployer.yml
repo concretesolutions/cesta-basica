@@ -15,7 +15,7 @@ jobs:
           run: cd frontend && npm i
 
         - name: Build
-          run: cd frontenv && npm run build
+          run: cd frontend && npm run build
       
         - name: change backend enpoint
           run: echo "testing"
