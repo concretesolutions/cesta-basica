@@ -12,10 +12,10 @@ jobs:
         - uses: actions/checkout@v2
 
         - name: Install dependencies
-          run: yarn
+          run: cd frontend && npm i
 
         - name: Build
-          run: yarn build
+          run: cd frontenv && npm run build
       
         - name: change backend enpoint
           run: echo "testing"
