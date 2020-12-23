@@ -23,4 +23,4 @@ jobs:
       - uses: actions/checkout@{branch}
 
       - name: deploy-static-S3
-        run: ./lambdas/aws-deployer/aws-deployer.py {branch}
+        run: ./lambdas/aws_deployer/aws_deployer.py {branch}
