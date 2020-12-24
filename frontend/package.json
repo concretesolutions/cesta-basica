@@ -23,7 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "aws s3 sync build/ s3://cesta-basica-static-123567123"
+    "deploy": "aws s3 sync build/ S3_BUCKET_${DEPLOY_ENV}"
   },
   "eslintConfig": {
     "extends": "react-app"

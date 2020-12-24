@@ -17,21 +17,14 @@ jobs:
     steps:
         - uses: actions/checkout@v2
 
-        - name: Install dependencies
+        - name: install dependencies
           run: cd frontend && npm i
 
-        - name: Build
+        - name: build
           run: cd frontend && npm run build
 
         - name: change backend enpoint
           run: echo "testing"
 
-        - name: Deploy
-          uses: reggionick/s3-deploy@v3
-          with:
-            folder: build
-            bucket: ${{ secrets.S3_BUCKET }}
-            bucket-region: ${{ secrets.S3_BUCKET_REGION }}
-            delete-removed: true
-            no-cache: true
-            private: true
+        - name: deploy
+          run: aws s3 sync build/ S3_BUCKET_$env:BRANCH
