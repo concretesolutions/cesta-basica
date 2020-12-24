@@ -1,8 +1,5 @@
 name: aws-deployer
 
-env:
-  BRANCH: ${GITHUB_REF##*/}
-
 on:
   push:
     branches: [aws-migration]
@@ -13,6 +10,7 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      BRANCH: ${GITHUB_REF##*/}
       CI: false
     steps:
         - uses: actions/checkout@v2
