@@ -27,4 +27,4 @@ jobs:
           run: echo "testing"
 
         - name: deploy
-          run: aws s3 sync build/ S3_BUCKET_$env:BRANCH
+          run: aws s3 sync build/ S3_BUCKET_${{ env:BRANCH }}
