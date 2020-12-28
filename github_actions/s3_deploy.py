@@ -4,6 +4,8 @@
 This script deploys the frontend build directory onto S3 buckets, both dev and prod environments.
 
 requirements: aws-cli and IAM credentials.
+
+FYI IAM credentials must change every 3 months.
 """
 
 import subprocess
