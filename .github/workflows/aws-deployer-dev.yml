@@ -25,4 +25,4 @@ jobs:
           run: echo $BRANCH
 
         - name: deploy
-          run: aws s3 sync build/ S3_BUCKET_${BRANCH}
+          run: aws s3 sync build/ S3_BUCKET_$BRANCH
