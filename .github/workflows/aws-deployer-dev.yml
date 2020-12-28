@@ -2,7 +2,9 @@ name: aws-deployer
 
 on:
   push:
-    branches: [aws-migration]
+    branches: [develop, master]
+  merge:
+    branches: [develop, master]
 jobs:
   run:
     runs-on: ubuntu-latest
