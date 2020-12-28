@@ -21,8 +21,9 @@ jobs:
         - name: build
           run: cd frontend && npm run build
 
-        - name: change backend enpoint
-          run: echo $BRANCH
+        - name: Set output BRANCH var
+          id: vars
+          run: echo ::set-output name=BRANCH::${GITHUB_REF#refs/*/}
 
-        - name: deploy
-          run: aws s3 sync build/ S3_BUCKET_$BRANCH
+      - name: deploy
+          run: aws s3 sync build/ S3_BUCKET_${{ steps.vars.outputs.BRANCH }}
