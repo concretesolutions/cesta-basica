@@ -25,5 +25,5 @@ jobs:
           id: vars
           run: echo ::set-output name=BRANCH::${GITHUB_REF#refs/*/}
 
-      - name: deploy
+        - name: deploy
           run: aws s3 sync build/ S3_BUCKET_${{ steps.vars.outputs.BRANCH }}
