@@ -20,7 +20,7 @@ S3_BUCKETS = {
 
 if branch in S3_BUCKETS:
     print(subprocess.check_output('which aws'.split()))
-    command = f'aws s3 sync ./frontend/build/ {S3_BUCKETS[branch]}'.split()
+    command = f'aws s3 sync ./frontend/build/ s3://{S3_BUCKETS[branch]}'.split()
     output = subprocess.check_output(command)
 
 
