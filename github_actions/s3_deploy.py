@@ -9,8 +9,7 @@ requirements: aws-cli and IAM credentials.
 import subprocess
 import sys
 
-print(sys.argv)
-branch = {sys.argv[1]}
+branch = sys.argv[1]
 
 S3_BUCKETS = {
     'develop': 'cesta-basica-static-dev-12365752',
