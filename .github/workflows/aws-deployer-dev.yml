@@ -1,0 +1,28 @@
+name: aws-deployer
+
+on:
+  pull_request:
+    types: [ closed ]
+    branches: [develop, master]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      CI: false
+    steps:
+        - uses: actions/checkout@v2
+
+        - name: install dependencies
+          run: cd frontend && npm i
+
+        - name: build
+          run: cd frontend && npm run build
+
+        - name: Set output BRANCH var
+          id: vars
+          run: echo ::set-output name=BRANCH::${GITHUB_REF#refs/*/}
+
+        - name: deploy
+          run: ./github_actions/s3_deploy.py ${{ steps.vars.outputs.BRANCH }}

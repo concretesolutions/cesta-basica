@@ -26,9 +26,12 @@
     "generate-site-collection-by-donation": "node -r esm src/load-data/generate-site-collection-by-donation.js",
     "generate-site-collection-by-user": "node -r esm src/load-data/generate-site-collection-by-user.js",
     "validate-login": "node -r esm src/load-data/validate-login.js",
+    "create-zip": "/usr/bin/zip -r cesta-basica-api.zip .",
+    "deploy": "aws lambda update-function-code --region=us-east-1 --function-name cesta-basica-api --zip-file fileb://cesta-basica-api.zip",
     "build": ""
   },
   "dependencies": {
+    "aws-lambda-ric": "^1.0.0",
     "aws-sdk": "^2.643.0",
     "axios": "^0.19.2",
     "cors": "^2.8.5",
@@ -45,7 +48,6 @@
     "mongoose": "^5.9.5",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
-    "serverless-http": "^2.3.2",
     "uuid": "^7.0.2"
   },
   "devDependencies": {
@@ -55,6 +57,7 @@
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "serverless-s3-deploy": "^0.9.0"
   }
 }
