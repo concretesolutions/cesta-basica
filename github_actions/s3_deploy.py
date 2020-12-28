@@ -9,6 +9,7 @@ requirements: aws-cli and IAM credentials.
 import subprocess
 import sys
 
+print(sys.argv)
 branch = {sys.argv[1]}
 
 S3_BUCKETS = {
