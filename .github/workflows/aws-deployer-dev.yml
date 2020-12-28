@@ -1,9 +1,8 @@
 name: aws-deployer
 
 on:
-  push:
-    branches: [develop, master]
-  merge:
+  pull_request:
+    types: [ closed ]
     branches: [develop, master]
 jobs:
   run:
