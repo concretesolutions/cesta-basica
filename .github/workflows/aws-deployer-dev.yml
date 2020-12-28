@@ -5,12 +5,10 @@ on:
     branches: [aws-migration]
 jobs:
   run:
-    environment: dev
     runs-on: ubuntu-latest
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      BRANCH: ${GITHUB_REF##*/}
       CI: false
     steps:
         - uses: actions/checkout@v2
@@ -26,4 +24,4 @@ jobs:
           run: echo ::set-output name=BRANCH::${GITHUB_REF#refs/*/}
 
         - name: deploy
-          run: aws s3 sync build/ S3_BUCKET_${{ steps.vars.outputs.BRANCH }}
+          run: ./github_actions/s3_deploy.py ${{ steps.vars.outputs.BRANCH }}
