@@ -17,5 +17,5 @@ app.use(cors())
 app.use(router)
 app.use(genericErrorHanlder)
 
-export const start = () =>
-  new Promise(resolve => app.listen(process.env.PORT, () => resolve(app)))
+export const start = () => new Promise(resolve => app.listen(process.env.PORT, () => resolve(app)))
+module.exports = app
