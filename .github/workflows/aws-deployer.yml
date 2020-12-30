@@ -17,6 +17,9 @@ jobs:
         - name: install dependencies
           run: cd frontend && npm i
 
+        - name: replace_REACT_APP_APIHOST_env_var
+          run: ./github_actions/replace_api_enpoint.py ${{ steps.vars.outputs.BRANCH }}
+
         - name: build
           run: cd frontend && npm run build
 
