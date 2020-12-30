@@ -21,15 +21,22 @@ S3_BUCKETS = {
 
 
 def _path_exists_and_branch_is_correct(path, branch):
-    return path.exists() and branch in ENVS_API_ENDPOINT
+    result = path.exists() and branch in ENVS_API_ENDPOINT
 
+    if not result:
+        error_message = f"""Invalid path to index.js or branch differs from develop/master:
+- indexpath is {path}, exists:{path.exists()}
+- branch is {branch}"""
+        raise RuntimeError(error_message)
+
+    return result
 
 branch = sys.argv[1]
 
 if not branch:
     raise RuntimeError('Missing branch name.')
 
-index_path = Path('../frontend/src/services/API/index.js')
+index_path = (Path('./frontend/src/services/API/index.js')).resolve()
 
 
 def replace_api_endpoint():
@@ -41,7 +48,6 @@ def replace_api_endpoint():
         with open(str(index_path), 'w') as f:
             f.write(contents)
 
-    raise RuntimeError('Invalid path to index.js or branch differs from develop/master')
 
 
 def build_frontend():
@@ -62,4 +68,4 @@ if __name__ == '__main__':
     install_frontend_dependencies()
     replace_api_endpoint()
     build_frontend()
-    s3_deploy()
+#    s3_deploy()
