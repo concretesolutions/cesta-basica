@@ -25,6 +25,10 @@ def _path_exists_and_branch_is_correct(path, branch):
 
 
 branch = sys.argv[1]
+
+if not branch:
+    raise RuntimeError('Missing branch name.')
+
 index_path = Path('../frontend/src/services/API/index.js')
 
 
@@ -37,19 +41,21 @@ def replace_api_endpoint():
         with open(str(index_path), 'w') as f:
             f.write(contents)
 
+    raise RuntimeError('Invalid path to index.js or branch differs from develop/master')
+
 
 def build_frontend():
-    subprocess.check_call('cd frontend && npm run build'.split())
+    subprocess.check_call('npm run build'.split(), cwd='frontend')
 
 
 def install_frontend_dependencies():
-    subprocess.check_call('cd frontend && npm i'.split())
+    subprocess.check_call('npm i'.split(), cwd='frontend')
 
 
 def s3_deploy():
     if branch in S3_BUCKETS:
         command = f'aws s3 sync ./frontend/build/ s3://{S3_BUCKETS[branch]}'.split()
-        subprocess.check_output(command)
+        subprocess.check_call(command)
 
 
 if __name__ == '__main__':
