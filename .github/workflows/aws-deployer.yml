@@ -14,4 +14,4 @@ jobs:
     steps:
         - uses: actions/checkout@v2
         - name: build dependencies and deploy
-          run: echo ::set-output name=BRANCH::${GITHUB_REF#refs/*/} && ./github_actions/build_and_deploy.py ${{ steps.vars.outputs.BRANCH }}
+          run: ./github_actions/build_and_deploy.py ${GITHUB_REF#refs/*/}
