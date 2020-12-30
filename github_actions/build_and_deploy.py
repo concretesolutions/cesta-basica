@@ -68,4 +68,4 @@ if __name__ == '__main__':
     install_frontend_dependencies()
     replace_api_endpoint()
     build_frontend()
-#    s3_deploy()
+    s3_deploy()
