@@ -8,6 +8,7 @@ import { router } from './router'
 
 export const app = express()
 
+const serverless = require('serverless-http')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(fileUpload({ createParentPath: true }))
@@ -19,3 +20,4 @@ app.use(genericErrorHanlder)
 
 export const start = () => new Promise(resolve => app.listen(process.env.PORT, () => resolve(app)))
 module.exports = app
+module.exports.handler = serverless(app)
