@@ -25,10 +25,7 @@
     "transfer-donation-to-another-leader": "node -r esm src/load-data/transfer-donation-to-another-leader.js",
     "generate-site-collection-by-donation": "node -r esm src/load-data/generate-site-collection-by-donation.js",
     "generate-site-collection-by-user": "node -r esm src/load-data/generate-site-collection-by-user.js",
-    "validate-login": "node -r esm src/load-data/validate-login.js",
-    "create-zip": "/usr/bin/zip -r cesta-basica-api.zip .",
-    "deploy": "aws lambda update-function-code --region=us-east-1 --function-name cesta-basica-api --zip-file fileb://cesta-basica-api.zip",
-    "build": ""
+    "validate-login": "node -r esm src/load-data/validate-login.js"
   },
   "dependencies": {
     "aws-lambda-ric": "^1.0.0",
@@ -48,6 +45,7 @@
     "mongoose": "^5.9.5",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
+    "serverless-http": "^2.6.0",
     "uuid": "^7.0.2"
   },
   "devDependencies": {
