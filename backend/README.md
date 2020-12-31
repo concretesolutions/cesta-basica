@@ -6,13 +6,9 @@ O backend usa um MongoDB instalado num EC2 e AWS Lambdas rodam o backend escrito
 
 ## Banco de dados
 
-É um MongoDB instalado no ec2-user@ec2-100-24-178-38.compute-1.amazonaws.com
+Temos 2 instâncias de Mongodb (production/development)
 
 ## env vars
-
-Você precisa configurar as seguintes env vars:
-
-AWS_PROFILE=cesta-basica-lambda-uploader
 
 As env vars abaixo devem ser configuradas no lambda:
 
