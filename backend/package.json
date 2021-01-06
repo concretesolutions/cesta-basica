@@ -30,7 +30,7 @@
   "dependencies": {
     "aws-lambda-ric": "^1.0.0",
     "aws-sdk": "^2.643.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "cors": "^2.8.5",
     "csvtojson": "^2.0.10",
     "dotenv": "^8.2.0",
