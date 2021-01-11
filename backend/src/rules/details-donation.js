@@ -1,5 +1,6 @@
 import { Donation, User, Site, Voucher } from '../repositories'
 import { statuses } from '../enums'
+import config from '../../config'
 
 export async function detailsDonation ({ donationId }) {
   if (!donationId) {
@@ -42,7 +43,7 @@ export async function detailsDonation ({ donationId }) {
     throw new Error('Não foi possível achar uma unidade associada à esta doação')
   }
 
-  const publicPhotoUrl = receivedCardsS3Key ? `https://${process.env.BUCKET_NAME}.s3.amazonaws.com/${receivedCardsS3Key}` : null
+  const publicPhotoUrl = receivedCardsS3Key ? `https://${config.app.bucketName}.s3.amazonaws.com/${receivedCardsS3Key}` : null
 
   const { name: leaderName } = leader
 
@@ -64,7 +65,7 @@ export async function detailsDonation ({ donationId }) {
       receivedContactNumber,
       receivedEmail,
       leaderComment,
-      publicPhotoUrl: cardDonatedS3Key ? `https://${process.env.BUCKET_NAME}.s3.amazonaws.com/${cardDonatedS3Key}` : null
+      publicPhotoUrl: cardDonatedS3Key ? `https://${config.app.bucketName}.s3.amazonaws.com/${cardDonatedS3Key}` : null
     }
   })
 

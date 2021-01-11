@@ -1,8 +1,9 @@
 import { S3 } from 'aws-sdk'
+import config from '../../config'
 
 export function upload (Key, Body) {
   return new S3().upload({
-    Bucket: process.env.BUCKET_NAME,
+    Bucket: config.app.bucketName,
     Key,
     Body
   }).promise()
@@ -10,15 +11,15 @@ export function upload (Key, Body) {
 
 export function remove (Key) {
   return new S3().deleteObject({
-    Bucket: process.env.BUCKET_NAME,
+    Bucket: config.app.bucketName,
     Key
   }).promise()
 }
 
 export function signInUrl (Key) {
   return new S3().getSignedUrl('getObject', {
-    Bucket: process.env.BUCKET_NAME,
+    Bucket: config.app.bucketName,
     Key,
-    Expires: 60 * 60 * 24
+    Expires: config.app.expires
   })
 }

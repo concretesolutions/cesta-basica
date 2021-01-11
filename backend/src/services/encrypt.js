@@ -1,13 +1,12 @@
 import { createCipheriv } from 'crypto'
 import { Buffer } from 'buffer'
+import config from '../../config'
 
-const algorithm = 'aes-256-ctr'
-const input = 'utf8'
-const output = 'hex'
+const { app: { algorithm, input, output } } = config
 
 export function encrypt (value) {
-  const key = process.env.ENCRYPTKEY
-  const encryptiv = process.env.ENCRYPTIV
+  const key = config.app.encryptIv
+  const encryptiv = config.app.encryptKey
   const iv = Buffer.from(encryptiv)
   const cipher = createCipheriv(algorithm, key, iv)
   let crypted = cipher.update(value, input, output)
