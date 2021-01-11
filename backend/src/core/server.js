@@ -1,14 +1,16 @@
 import express from 'express'
+import serveless from 'serverless-http'
 import fileUpload from 'express-fileupload'
 import helmet from 'helmet'
 import cors from 'cors'
 import morgan from 'morgan'
+
+import config from '../../config'
 import { genericErrorHanlder } from '../middlewares'
 import { router } from './router'
 
-export const app = express()
+const app = express()
 
-const serverless = require('serverless-http')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(fileUpload({ createParentPath: true }))
@@ -18,6 +20,9 @@ app.use(cors())
 app.use(router)
 app.use(genericErrorHanlder)
 
-export const start = () => new Promise(resolve => app.listen(process.env.PORT, () => resolve(app)))
-module.exports = app
-module.exports.handler = serverless(app)
+const start = () =>
+  new Promise(resolve => app.listen(config.app.port, () => resolve(app)))
+
+const handler = serveless(app)
+
+export { start, handler }

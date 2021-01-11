@@ -1,4 +1,5 @@
 import csvtojson from 'csvtojson'
+import config from '../../../config'
 
 export async function readFile (file) {
   const csvData = file.data.toString('utf8')
@@ -6,6 +7,6 @@ export async function readFile (file) {
   return csvtojson({
     output: 'csv',
     trim: true,
-    delimiter: process.env.FILE_DELIMITER || ',' // Delimitador do arquivo
+    delimiter: config.app.fileDelimiter || ',' // Delimitador do arquivo
   }).fromString(csvData)
 }
