@@ -217,12 +217,12 @@
 "aws4@^1.8.0":
   "version" "1.11.0"
 
-"axios@^0.19.2":
-  "integrity" "sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA=="
-  "resolved" "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz"
-  "version" "0.19.2"
+"axios@^0.21.1":
+  "integrity" "sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA=="
+  "resolved" "https://registry.npmjs.org/axios/-/axios-0.21.1.tgz"
+  "version" "0.21.1"
   dependencies:
-    "follow-redirects" "1.5.10"
+    "follow-redirects" "^1.10.0"
 
 "backend@./backend":
   "resolved" "file:backend"
@@ -230,7 +230,7 @@
   dependencies:
     "aws-lambda-ric" "^1.0.0"
     "aws-sdk" "^2.643.0"
-    "axios" "^0.19.2"
+    "axios" "^0.21.1"
     "cors" "^2.8.5"
     "csvtojson" "^2.0.10"
     "dotenv" "^8.2.0"
