@@ -16,8 +16,8 @@ ENVS_API_ENDPOINT = {
 }
 
 ENVS_CORS_WEBSITE = {
-    'develop': 'https://dev.cestabasicadigital.com',
-    'master': 'https://www.cestabasicadigital.com'
+    'develop': 'CORS_WEBSITE_DEV',
+    'master': 'CORS_WEBSITE_MASTER'
 }
 
 
