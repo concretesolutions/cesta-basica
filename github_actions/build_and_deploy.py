@@ -38,6 +38,7 @@ def replace_api_endpoint(index_path, branch):
 
 
 def build_frontend():
+    subprocess.check_call('rm -rf build'.split(), cwd='frontend')
     subprocess.check_call('npm run build'.split(), cwd='frontend')
 
 
