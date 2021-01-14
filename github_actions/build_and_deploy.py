@@ -5,6 +5,7 @@
 """
 This script generates the frontend build package to be deploy onto S3 static buckets.
 """
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -31,7 +32,7 @@ def replace_api_endpoint(index_path, branch):
     if _path_exists_and_branch_is_correct(index_path, branch):
         contents = open(str(index_path)).read()
 
-        contents = contents.replace('REACT_APP_APIHOST', ENVS_API_ENDPOINT[branch])
+        contents = contents.replace('process.env.REACT_APP_APIHOST', f'"{os.environ[ENVS_API_ENDPOINT[branch]]}"')
 
         with open(str(index_path), 'w') as f:
             f.write(contents)
