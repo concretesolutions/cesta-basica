@@ -15,6 +15,11 @@ ENVS_API_ENDPOINT = {
     'master': 'REACT_APP_API_HOST_MASTER'
 }
 
+ENVS_CORS_WEBSITE = {
+    'develop': 'https://dev.cestabasicadigital.com',
+    'master': 'https://www.cestabasicadigital.com'
+}
+
 
 def _path_exists_and_branch_is_correct(path, branch):
     result = path.exists() and branch in ENVS_API_ENDPOINT
@@ -33,6 +38,8 @@ def replace_api_endpoint(index_path, branch):
         contents = open(str(index_path)).read()
 
         contents = contents.replace('process.env.REACT_APP_APIHOST', f'"{os.environ[ENVS_API_ENDPOINT[branch]]}"')
+
+        contents = contents.replace('process.env.CORS_WEBSITE', f'"{os.environ[ENVS_CORS_WEBSITE[branch]]}"')
 
         with open(str(index_path), 'w') as f:
             f.write(contents)
