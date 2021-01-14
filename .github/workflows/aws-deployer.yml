@@ -12,6 +12,8 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       REACT_APP_API_HOST_DEV: ${{ secrets.REACT_APP_API_HOST_DEV }}
       REACT_APP_API_HOST_MASTER: ${{ secrets.REACT_APP_API_HOST_MASTER }}
+      CORS_WEBSITE_DEV: ${{ secrets.CORS_WEBSITE_DEV }}
+      CORS_WEBSITE_MASTER: ${{ secrets.CORS_WEBSITE_MASTER }}
 
       CI: false
     steps:
