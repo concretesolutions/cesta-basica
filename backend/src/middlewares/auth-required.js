@@ -11,7 +11,6 @@ export function authRequired (...roles) {
 
     jwt.verify(token, config.app.secret, function (err, auth) {
       if (err) {
-        // todo: implement logger
         console.log('Error on verify token', err)
         return res.status(401).send({ auth: false, message: UNAUTHORIZED_MESSAGE })
       }
