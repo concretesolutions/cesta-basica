@@ -1,8 +1,13 @@
-import { S3 } from 'aws-sdk'
+import AWS from 'aws-sdk'
 import config from '../../config'
 
+const s3 = new AWS.S3({
+  accessKeyId: process.env.ACCESS_KEY_ID,
+  secretAccessKey: process.env.SECRET_ACCESS_KEY
+})
+
 export function upload (Key, Body) {
-  return new S3().upload({
+  return s3.upload({
     Bucket: config.app.bucketName,
     Key,
     Body
@@ -10,14 +15,14 @@ export function upload (Key, Body) {
 }
 
 export function remove (Key) {
-  return new S3().deleteObject({
+  return s3.deleteObject({
     Bucket: config.app.bucketName,
     Key
   }).promise()
 }
 
 export function signInUrl (Key) {
-  return new S3().getSignedUrl('getObject', {
+  return s3.getSignedUrl('getObject', {
     Bucket: config.app.bucketName,
     Key,
     Expires: config.app.expires
