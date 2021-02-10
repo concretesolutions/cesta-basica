@@ -1,6 +1,7 @@
 import { DONATION_ID_REGEX, VOUCHER_ID_REGEX } from '../filter-util'
 import ProcFileException from '../../../core/process-file-exception'
 import { fileStatus } from '../../../repositories'
+import { normalizeLines } from '../../../utils'
 
 const forEachFunc = (
   [
@@ -31,7 +32,7 @@ export default async (data) => {
   const invalid = []
   const valid = []
   const currentDate = new Date()
-  Object.entries(data).forEach((line) => forEachFunc(line, valid, invalid, currentDate))
+  Object.entries(data).forEach((line) => forEachFunc(normalizeLines(line), valid, invalid, currentDate))
   if (invalid.length > 0) {
     throw new ProcFileException(
       422,

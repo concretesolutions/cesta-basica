@@ -1,14 +1,9 @@
 import { CPF_REGEX, SITE_ID_REGEX, DONATION_ID_REGEX } from '../filter-util'
 import ProcFileException from '../../../core/process-file-exception'
 import { fileStatus } from '../../../repositories'
+import { normalizeLines } from '../../../utils'
 
-const forEachFunc = (
-  [
-    lineNumber,
-    [
-      donationId, leaderLogin, siteId, quantity, scheduled
-    ]
-  ],
+const forEachFunc = ([lineNumber, [donationId, leaderLogin, siteId, quantity, scheduled]],
   sucess,
   erros
 ) => {
@@ -35,7 +30,7 @@ export default async (data) => {
   const invalid = []
   const valid = []
 
-  Object.entries(data).forEach((line) => forEachFunc(line, valid, invalid))
+  Object.entries(data).forEach((line) => forEachFunc(normalizeLines(line), valid, invalid))
 
   if (invalid.length > 0) {
     throw new ProcFileException(
