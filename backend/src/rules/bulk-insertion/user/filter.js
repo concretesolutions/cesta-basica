@@ -2,6 +2,7 @@ import ProcFileException from '../../../core/process-file-exception'
 import { CPF_REGEX, SITE_ID_REGEX } from '../filter-util'
 import { fileStatus } from '../../../repositories'
 import { encrypt } from '../../../services'
+import { normalizeLines } from '../../../utils'
 
 const forEachFunc = (
   [
@@ -43,7 +44,7 @@ const forEachFunc = (
 export default async (data) => {
   const invalid = []
   const valid = []
-  Object.entries(data).forEach((line) => forEachFunc(line, valid, invalid))
+  Object.entries(data).forEach((line) => forEachFunc(normalizeLines(line), valid, invalid))
   if (invalid.length > 0) {
     throw new ProcFileException(
       422,

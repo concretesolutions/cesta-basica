@@ -8,7 +8,6 @@
     "dev": "nodemon -r esm src/main.js",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
-    "postinstall": "npm run build",
     "load-data": "node -r esm src/load-data/all.js",
     "load-data-users": "node -r esm src/load-data/load-types/user.js",
     "load-data-sites": "node -r esm src/load-data/load-types/site.js",
@@ -28,7 +27,6 @@
     "validate-login": "node -r esm src/load-data/validate-login.js"
   },
   "dependencies": {
-    "aws-lambda-ric": "^1.0.0",
     "aws-sdk": "^2.643.0",
     "axios": "^0.21.1",
     "cors": "^2.8.5",
