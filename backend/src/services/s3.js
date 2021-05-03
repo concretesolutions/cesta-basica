@@ -10,7 +10,8 @@ export function upload (Key, Body) {
   return s3.upload({
     Bucket: config.app.bucketName,
     Key,
-    Body
+    Body,
+    ACL: config.app.bucketAcl
   }).promise()
 }
 
