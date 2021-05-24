@@ -22,4 +22,9 @@
     position: fixed;
     width: 100%;
   }
+
+  &__clickHere {
+    font-weight: bold;
+    cursor: pointer;
+  }
 }
