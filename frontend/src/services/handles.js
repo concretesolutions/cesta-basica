@@ -34,3 +34,7 @@ export const handleDonationReceivedVoucher = (voucher) => {
 export const handleToggleModal = (setModal) => {
   setModal((value) => !value)
 }
+
+export const handleReloadLocation = () => {
+  window.location.reload()
+}

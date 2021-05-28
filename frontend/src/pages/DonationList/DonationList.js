@@ -12,10 +12,12 @@ import { BottomMenu } from '../../components/BottomMenu'
 import { FilteredDonationList, DonationsList } from '../../services/API/donationList'
 import { CommitmentCheck } from '../../services/API/terms'
 
-import { registerNewDonation } from '../../utils/strings'
-
+import { registerNewDonation, locationPermission } from '../../utils/strings'
+import { handleReloadLocation } from '../../services/handles'
 function DonationList({ store, dispatch, history }) {
   const [loading, setLoading] = useState()
+  const [latitude, setLatitude] = useState(null)
+  const [longitude, setLongitude] = useState(null)
   const {
     donationList,
     user: { role },
@@ -24,6 +26,10 @@ function DonationList({ store, dispatch, history }) {
 
   function getGeoLocation() {
     navigator.geolocation.getCurrentPosition((position) => {
+      
+      setLatitude(position.coords.latitude)
+      setLongitude(position.coords.longitude)
+
       const userLocation = {
         lat: position.coords.latitude,
         lon: position.coords.longitude,
@@ -56,41 +62,54 @@ function DonationList({ store, dispatch, history }) {
   const isAdmin = () => role === 'admin'
 
   return (
+    
     <div className="containerDonation">
-      {loading && !donationList && <Loader />}
-      <DonationHeader isAdmin={isAdmin()} qntd={filters.filterQnt} />
 
-      {donationList.length > 0 ? (
-        <div className={`containerDonation__list containerDonation__list--${role}`}>
-          {donationList.map((item) => {
-            const { quantity, status, donationId } = item
-            return (
-              <DonationItem
-                title={donationId}
-                quantity={quantity}
-                key={donationId}
-                stateDonation={status}
-                donationId={donationId}
-                userRole={role}
-              />
-            )
-          })}
-        </div>
-      ) : (
-        <DonationIsEmpty whichMessage={role} />
-      )}
+      {(latitude && longitude) === null ? 
+        (
+          <div className="alert warning">{locationPermission} Habilite sua localização e <a className="containerDonation__clickHere" onClick={() => handleReloadLocation()}>clique aqui</a>.</div>
+        
+        ) : 
+        (
+          <div>
+            {loading && !donationList && <Loader />}
+      
+            <DonationHeader isAdmin={isAdmin()} qntd={filters.filterQnt} />
 
-      {isAdmin() && (
-        <div className="containerDonation__button">
-          <Button
-            size={ButtonTypes.LARGE}
-            typeButton="button"
-            message={registerNewDonation}
-            handleClick={handleClickNewDonation}
-          />
-        </div>
-      )}
-      <BottomMenu isAdmin={isAdmin()} />
+            {donationList.length > 0 ? (
+              <div className={`containerDonation__list containerDonation__list--${role}`}>
+                {donationList.map((item) => {
+                  const { quantity, status, donationId } = item
+                  return (
+                    <DonationItem
+                      title={donationId}
+                      quantity={quantity}
+                      key={donationId}
+                      stateDonation={status}
+                      donationId={donationId}
+                      userRole={role}
+                    />
+                  )
+                })}
+              </div>
+            ) : (
+              <DonationIsEmpty whichMessage={role} />
+            )}
+
+            {isAdmin() && (
+              <div className="containerDonation__button">
+                <Button
+                  size={ButtonTypes.LARGE}
+                  typeButton="button"
+                  message={registerNewDonation}
+                  handleClick={handleClickNewDonation}
+                />
+              </div>
+            )}
+            <BottomMenu isAdmin={isAdmin()} />
+          </div>
+        )
+      }
     </div>
   )
 }
