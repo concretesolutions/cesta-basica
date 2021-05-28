@@ -22,8 +22,8 @@ function Voucher ({
     listDonationId,
     state,
     city,
-    dateTo,
-    dateFrom
+    dateTo:toDate(dateTo),
+    dateFrom:toDate(dateFrom)
   }
 }
 
@@ -45,8 +45,8 @@ function Donation ({
     listDonationId,
     state,
     city,
-    dateTo,
-    dateFrom
+    dateTo:toDate(dateTo),
+    dateFrom:toDate(dateFrom)
   }
 }
 
@@ -72,6 +72,10 @@ function regexp (value, sign = '', opt) {
 
 function verifyField (value) {
   return value ? regexp(value, '$', 'i') : regexp('^')
+}
+
+function toDate(date) {
+  return date instanceof Date ? date : new Date(date)
 }
 
 module.exports = (entity, filters) => {
